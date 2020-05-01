@@ -1,4 +1,4 @@
-import { AbstractResource } from "./ResourceControl"
+import { AbstractResource } from "./AbstractResource"
 import ResourceLoader from "./ResLoader"
 
 /**
@@ -60,5 +60,3 @@ export abstract class BlobBasedHeavyResource extends AbstractResource {
      */
     abstract doDownGrade(): void
 }
-
-

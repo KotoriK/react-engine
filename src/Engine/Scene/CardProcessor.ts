@@ -3,13 +3,13 @@ import SceneBootstrap from "./SceneBootstrap";
 import { Time } from "../util/time";
 import Card, { ProcessedCard } from "./Card";
 
-export default class CardProcessor{
-    constructor(card:Card,bootstrap:SceneBootstrap){
-        this.card=card
-        this._bootstrap=bootstrap
+export default class CardProcessor {
+    constructor(card: Card, bootstrap: SceneBootstrap) {
+        this.card = card
+        this._bootstrap = bootstrap
     }
-    public card:Card
-    private _bootstrap:SceneBootstrap
+    public card: Card
+    private _bootstrap: SceneBootstrap
     private _nowCardAction: Array<SceneAction> = []
     jumpNext() {
         this._nowCardAction.push({ type: SceneActionType.jump_to, value: 'next' })
@@ -23,33 +23,31 @@ export default class CardProcessor{
         this._nowCardAction.push({ type: SceneActionType.jump_to, value: 0 })
         return this
     }
-    jumpTo(index:number) {
+    jumpTo(index: number) {
         this._nowCardAction.push({ type: SceneActionType.jump_to, value: index })
         return this
     }
-    playAudio(resId: string,trackId:string) {
+    playAudio(resId: string, trackId: string) {
         this._prepareResource(resId)
-        this._nowCardAction.push({type:SceneActionType.au_play_source,trackId,resId})
+        this._nowCardAction.push({ type: SceneActionType.au_play_source, trackId, resId })
         return this
-    }
-   
-    setBackground(resId: string) {
-
-    }
-    private _prepareResource(resId:string){
-        this._bootstrap.res.set(resId,[false,this._bootstrap.engine.ResourcesSet.get(resId)])
     }
     showComponent() {
 
     }
 
-    wait(time:Time){
-        this._nowCardAction.push({ type: SceneActionType._wait, value:time })
+    wait(time: Time) {
+        this._nowCardAction.push({ type: SceneActionType._wait, value: time })
         return this
     }
-    setInterval(){
+    setInterval() {
 
     }
+
+    private _prepareResource(resId: string) {
+        this._bootstrap.res.set(resId, [false, this._bootstrap.engine.ResourcesCtrl.get(resId)])
+    }
+
     /**
      * 引擎内部函数，不应在Card里被调用。
      *
@@ -57,9 +55,8 @@ export default class CardProcessor{
      * @returns
      * @memberof CardProcessor
      */
-    _build(){
+    _build() {
         this.card.run(this)
-
         return { actions: this._nowCardAction } as ProcessedCard
     }
 }

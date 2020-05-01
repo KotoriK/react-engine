@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "parcel src/index.html",
-    "tsc":"tsc src\\Engine\\util\\CircularLinkedList.ts src\\Engine\\util\\SingleWayLinkedList"
+    "tsc": "tsc src\\Engine\\util\\CircularLinkedList.ts src\\Engine\\util\\SingleWayLinkedList",
+    "parcel-ver": "parcel --version"
   },
   "author": "",
   "bugs": {
@@ -23,8 +24,21 @@
     "redux": "^4.0.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "typescript": "^3.8.3"
+  },"babel":{
+    "presets": [[
+      "@babel/preset-env",
+      {
+          "targets": {
+            "esmodules": true
+            }
+      }
+    ],"@babel/preset-react"]
   }
 }

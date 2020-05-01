@@ -1,4 +1,4 @@
-import { Time, Times, TimeUnit } from "../../util/time"
+import { Time, Times, TimeUnit } from "../util/time"
 
 /**
  * @description 实现音频特效的静态类

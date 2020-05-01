@@ -1,4 +1,4 @@
-{/* react-engine
+/* react-engine
 Copyright (C) 2020  Yukicat-Dev
 
 This program is free software: you can redistribute it and/or modify
@@ -14,18 +14,11 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>. */}
-import Engine from "./Engine/Engine";
-import React from "react";
-import ReactDom from 'react-dom'
-import LoadingScreen from './Engine/UI/LoadingScreen'
-//load screen
-function Game() {
-    return (<div >
-        <LoadingScreen text="Loading" interval={500}></LoadingScreen>
-    </div>)
-}
-ReactDom.render(<Game/>, document.getElementById('Game'))
+along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
+import Engine from "./Engine/Engine";
 //init Engine
-//window['GameEngine']=new Engine()
+const gameEngine=new Engine(document.getElementById('Game'))
+window['GameEngine']=new Engine(document.getElementById('Game'))
+gameEngine.init()
+

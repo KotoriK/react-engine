@@ -1,7 +1,7 @@
 import { ProcessedCard } from "./Card";
-import { MarkedAbstractResource } from "../Resource/ResourceControl";
-import Engine from "../Engine";
+import { MarkedAbstractResource } from "../Resource/AbstractResource";
 import { SceneAction, SceneActionType } from "./SceneAction";
+import Stage from "./Stage";
 
 /**
  * 
@@ -10,12 +10,14 @@ import { SceneAction, SceneActionType } from "./SceneAction";
  * @class Scene
  */
 export default class Scene {
-    constructor(cards: Array<ProcessedCard>, res: Map<string, MarkedAbstractResource>, engine: Engine) {
+    constructor(scene_id: string, cards: Array<ProcessedCard>, res: Map<string, MarkedAbstractResource>, stage: Stage) {
+        this.scene_id = scene_id
         this._cards = cards
         this._res = res
-        this.engine = engine
+        this.stage = stage
     }
-    public readonly engine: Engine
+    public readonly scene_id: string
+    public readonly stage: Stage
     private _cards: Array<ProcessedCard> = []
     private _res: Map<string, MarkedAbstractResource>
     public async run() {
@@ -46,15 +48,16 @@ export default class Scene {
         }
 
     }
-    public unloadAll(){
+    public unloadAll() {
 
     }
     public async performAction(action: SceneAction) {
         switch (action.type) {
- case SceneActionType.au_play_source:
-                let track = this.trackMap.get(action.trackId)
+            case SceneActionType.au_play_source:
+                this.stage.engine.AudioCtrl.play(action.trackId, action.resId)
+                /* let track = this.trackMap.get(action.trackId)
                 if (track) {
-                    let audio = this.resourcesControl.get(action.resId) as Audio
+                    let audio = this.engine.ResourcesCtrl.get(action.resId) as Audio
                     if (audio.value) {
                         let source = track.mixer.createSource(audio.value)
                         track.childSourcesMap.set(action.resId, source)
@@ -67,11 +70,25 @@ export default class Scene {
                         })
                     }
 
-                }
+                } */
                 break;
             case SceneActionType.au_stop_source:
-
+                break
             case SceneActionType.au_mute_track:
+                break
+            case SceneActionType.switch_scene:
+                this.stage.jumpToScene(action.value)
+                break
+            case SceneActionType.ui_add_gadget:
+                this.stage.engine.UICtrl.add(action.value)
+                break
+            case SceneActionType.ui_remove_gadget:
+                this.stage.engine.UICtrl.remove(action.value)
+                break
+            case SceneActionType.ui_change_main_view:
+                this.stage.engine.UICtrl.switch(action.value)
+                break
+
         }
     }
 }

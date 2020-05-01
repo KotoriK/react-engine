@@ -1,6 +1,6 @@
 import Card, { ProcessedCard } from "./Card";
 import Scene from "./Scene";
-import {  MarkedAbstractResource } from "../Resource/ResourceControl";
+import { MarkedAbstractResource } from "../Resource/AbstractResource";
 import Engine from "../Engine";
 import CardProcessor from "./CardProcessor";
 /**
@@ -11,13 +11,13 @@ import CardProcessor from "./CardProcessor";
  * @class SceneBootstrap
  */
 export default class SceneBootstrap {
-    constructor(engine:Engine,cards?: Array<ProcessedCard>) {
-        this.engine=engine
+    constructor(engine: Engine, cards?: Array<ProcessedCard>) {
+        this.engine = engine
         this._cards = cards ? cards : []
     }
-    public readonly engine:Engine
+    public readonly engine: Engine
     private _cards: Array<ProcessedCard>
-    public res:Map<string,MarkedAbstractResource>=new Map()
+    public res: Map<string, MarkedAbstractResource> = new Map()
     /**
      * 向场景添加Card
      *
@@ -27,20 +27,17 @@ export default class SceneBootstrap {
      * @memberof SceneBootstrap
      */
     addCard(card: Card) {
-       
-        this._cards.push(new CardProcessor(card,this)._build())
-
+        this._cards.push(new CardProcessor(card, this)._build())
         return this
     }
-    
+
     /**
-     * 生成场景。
-     *
+     * 分配scene_id，生成场景。
      * @author KotoriK
      * @returns
      * @memberof SceneBootstrap
      */
-    build(){//TODO:
-        return new Scene(this._cards,this.res,this.engine)
+    build(scene_id: string) {//TODO:
+        return new Scene(scene_id, this._cards, this.res, this.engine.Stage)
     }
 }

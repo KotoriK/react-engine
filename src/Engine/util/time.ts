@@ -1,4 +1,4 @@
-import num_between from './number-between.js'
+import num_between from './number-between'
 export enum TimeUnit {
     Microsecond, Second, Minute, Hour, Day
 }

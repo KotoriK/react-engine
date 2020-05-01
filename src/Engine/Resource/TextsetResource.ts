@@ -1,4 +1,4 @@
-import { AbstractResource, AbstractResourceConstructor } from "./ResourceControl"
+import { AbstractResource, AbstractResourceConstructor } from "./AbstractResource"
 import { BlobBasedHeavyResource } from "./BlobBasedHeavyResource";
 
 /**

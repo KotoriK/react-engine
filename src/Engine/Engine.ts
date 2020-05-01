@@ -1,32 +1,37 @@
-import { AudioType } from "./Resource/Audio";
-import ResourceControl, { ResourceType } from "./Resource/ResourceControl";
-import ResourceLoader from "./Resource/ResLoader";
+import ResourceControl from "./Resource/ResourceControl";
 import engineSetting from '../Project/engine.json'
-import {createStore} from 'redux'
 import AudioControl from "./Audio/AudioControl";
+import Stage from "./Scene/Stage";
+import ReactUIControl from "./UI/ReactUIControl";
+import { AbstractUIControl } from "./UI/AbstractUIControl";
 
 export default class Engine {
-    constructor() {
-        this.ResourcesSet = new ResourceControl(engineSetting.resources)
-        this.AudioControl=new AudioControl({
-            mainMixerOption:engineSetting.AudioControl.mainMixerOption,
-            traces:engineSetting.AudioControl.traces
+    constructor(parentElement: HTMLElement | null) {
+        this.ResourcesCtrl = new ResourceControl({ decodeWorker: engineSetting.resources.decodeWorker as Array<[string, string]> })
+        this.AudioCtrl = new AudioControl({
+            mainMixerProps: engineSetting.AudioControl.mainMixerProps,
+            tracks: engineSetting.AudioControl.tracks
         })
+        this.Stage = new Stage(this)
+        this.UICtrl = new ReactUIControl(parentElement)
     }
-    public ResourcesSet: ResourceControl
-    public AudioControl:AudioControl
-    async init() {
-        let resSetting = JSON.parse(await (await ResourceLoader.getResourceByUrl(engineSetting.resourceSettingPath)).text())
-        this.ResourcesSet.init(resSetting)
-    }
-    playMusic(resId: string, asType: AudioType) {
-        let music = this.ResourcesSet.get(ResourceType.MUSIC, resId)
-        if (music && music.isLoaded) {
+    public ResourcesCtrl: ResourceControl
+    public AudioCtrl: AudioControl
+    public Stage: Stage
+    public UICtrl: AbstractUIControl<any>
+     init() {
+        //ui
+        this.UICtrl.init()
+        //res
+        /*  let resSetting = JSON.parse(await (await ResourceLoader.getResourceByUrl(engineSetting.resourceSettingPath)).text())
+         this.ResourcesCtrl.init(resSetting) */
+        //stage
 
-        } else {
-            //TODO:
-        }
+
+
+
     }
+
 }
 export interface EngineSetting {
     resourceSettingPath: string
