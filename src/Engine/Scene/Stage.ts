@@ -1,5 +1,5 @@
 import Scene from "./Scene";
-import Engine from "~Engine/Engine";
+import Engine from "../Engine";
 
 export default class Stage {
     constructor(engine: Engine) {

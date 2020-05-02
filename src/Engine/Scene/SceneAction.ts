@@ -1,5 +1,5 @@
 import { Time } from "../util/time";
-import { StartOptions } from "~Engine/Audio/AudioSource";
+import { StartOptions } from "../Audio/AudioSource";
 
 export enum GainChangeType {
     linear, exp, directly

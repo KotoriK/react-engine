@@ -1,6 +1,6 @@
 import AudioEffects, { FadeOption } from "./AudioEffects"
-import { TimeUnit, Times } from "~Engine/util/time"
-import sleep from "~Engine/util/sleep"
+import { TimeUnit, Times } from "../util/time"
+import sleep from "../util/sleep"
 
 /**
  * 绑定SourceNode与GainNode，方便对单独SourceNode的增益调整。

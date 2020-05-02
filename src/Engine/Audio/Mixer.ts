@@ -183,6 +183,6 @@ export default class Mixer {
 }
 export interface MixerProps {
     defaultMainGainValue?:number
-    ctxOptions?: AudioContextOptions | undefined
-    dynamicCompressorOptions?: DynamicsCompressorOptions | undefined
+    ctxOptions?: AudioContextOptions 
+    dynamicCompressorOptions?: DynamicsCompressorOptions 
 }

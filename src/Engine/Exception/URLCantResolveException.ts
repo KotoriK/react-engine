@@ -12,6 +12,7 @@ export default class ResIdNotFoundException extends Error{
         let message=`Can't resolve {${url}},${reason?`failed with reason "${reason}",`:``}please check your game file or network connection.`
         super(message)
         this.url=url
+        this.reason=reason?reason:''
     }
     public url:string
     public reason:string

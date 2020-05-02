@@ -7,9 +7,10 @@
     },"AudioControl":{
         "tracks":[{"name":"bgm"},{"name":"bgs"},{"name":"cv"},{"name":"ss"}],
         "mainMixerProps":{
+            "defaultMainGainValue":1,
             "ctxOptions":{
-                "latencyHint":"balanced",
-                "sampleRate":"44100"
+                "latencyHint":0,
+                "sampleRate":44100
             }
         }
     }

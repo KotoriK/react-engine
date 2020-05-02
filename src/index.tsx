@@ -19,6 +19,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 import Engine from "./Engine/Engine";
 //init Engine
 const gameEngine=new Engine(document.getElementById('Game'))
-window['GameEngine']=new Engine(document.getElementById('Game'))
+window['GameEngine']=gameEngine
 gameEngine.init()
-

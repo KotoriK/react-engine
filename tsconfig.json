@@ -2,7 +2,7 @@
     // tsconfig 所在的根目录, 则是一个project
     "compilerOptions": {
         "module": "commonjs", // 模块系统
-        "target": "es6",   // 生成目标, 一般选择ES6，因为不是客户端环境，没必要还编译成  ES5
+        "target": "ES2016",   // 生成目标, 一般选择ES6，因为不是客户端环境，没必要还编译成  ES5
         "jsx": "react",
         // 一组严苛的编译选项
         "noImplicitAny": false,
@@ -21,9 +21,9 @@
             "ES2019","DOM"
         ],
         "baseUrl": "./src",
-        "paths": {
+        /* "paths": {
           "~*": ["./*"]
-        },
+        }, */
         // "noUnusedLocals": true,
         // "noUnusedParameters": true,
         // "noFallthroughCasesInSwitch": true,

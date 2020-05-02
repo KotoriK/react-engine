@@ -1,6 +1,6 @@
 import Mixer, { MixerProps } from "./Mixer";
-import Audio from "~Engine/Resource/Audio";
-import AbstractException from "~Engine/Exception/AbstractException";
+import Audio from "../Resource/Audio";
+import AbstractException from "../Exception/AbstractException";
 
 export default class AudioControl {
     constructor(options: AudioControlProps) {
@@ -62,7 +62,7 @@ export interface AudioControlState {
 }
 export interface TrackProps {
     name: string,
-    mixerUserOptions: MixerProps,
+    mixerUserOptions?: MixerProps,
 }
 export interface Track {
     name: string
